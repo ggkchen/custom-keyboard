@@ -32,21 +32,17 @@ Parts are all in the BOM up there. Beyond that you'll want:
 - soldering iron + solder (any decent iron works, I used a TS100)
 - flush cutters for trimming diode legs
 - tweezers — really helpful for placing diodes, get a pair if you don't have one
-- a multimeter (optional but you'll regret skipping it if something goes wrong)
 - some masking tape
-- a USB cable for the Pro Micro
 
 You'll also need a printed case. STL is in `CAD/KEEBASSEMBLY.stl`, or grab the STEP if you want to tweak it. I printed mine in PETG at 0.2 layer height and it was fine.
 
 ## 1. Get the PCB made
 
-The gerbers are sitting in `KiCad/KiCad_Source_File/Keyboard Gerbers.zip`. Just upload that zip to JLCPCB, leave everything on default (1.6mm, HASL, whatever color you want — black hides flux residue, white shows off the diodes), and order 5. They're cheap and you'll probably want spares.
-
-While that's shipping, kick off the case print so they arrive around the same time.
+The gerbers are sitting in `KiCad/KiCad_Source_File/Keyboard Gerbers.zip`. Just upload that zip to JLCPCB, and order 5.
 
 ## 2. Solder the diodes
 
-Easy step but boring — there are 64 of them. The diodes are directional, so pay attention here: the black band on the diode lines up with the **square pad** on the PCB. Get this wrong and that key won't register, or worse, will ghost when you press other keys.
+The diodes are directional, so the black band on the diode lines up with the **square pad** on the PCB. If the diode is facing the wrong direction the key won't work, or it will register the wrong keys.
 
 What worked for me:
 - bend all 64 diodes into little staples first, in a batch
@@ -54,28 +50,14 @@ What worked for me:
 - tape something flat over the back, flip the board, and the diodes will sit flush from gravity
 - solder one leg of each, do a pass for alignment, then solder the other legs
 - snip the leads when you're done
-
-If you have a multimeter, hit a couple of random diodes in continuity mode just to make sure you didn't put any in backwards. Way easier to fix now than after the switches are on.
-
+  
 ## 3. Solder the Pro Micro
 
-Do the Pro Micro **before** the switches. I cannot stress this enough — once switches are on you can't get to those pads without desoldering half the board.
-
-You can either solder the Pro Micro directly to the PCB (lower profile, permanent) or use machined headers + sockets so you can swap it later. I went direct because I'm cheap. Components face down, toward the PCB, with the USB port lined up with the case cutout.
-
-One pro tip: put a dab of hot glue or some kapton over the USB connector after soldering. The Pro Micro USB port is famous for ripping off the board the first time someone trips on the cable.
+Do the Pro Micro **before** the switches.
 
 ## 4. Switches
 
-Drop the plate (if your case has one — mine doesn't, switches mount straight to the PCB) over the board, push 4 switches into the corners, and one in the middle. These hold everything in place.
-
-Flip it, solder just those 5, then check that the plate is sitting flat. If it's tilted you want to know now, not after you've soldered all 64. Reflow whichever corner is high and push it down.
-
-Once it's flat, fill in the rest. Both pins on each switch.
-
-## 5. Put it together
-
-Keycaps push on, PCB drops into the case, screws in. Plug it in. Don't panic when it doesn't type — we still have to flash firmware.
+Push 4 switches into the corners, and one in the middle. These hold everything in place, then flip it, and solder just those 5. After that, keep putting switches in and solder them in.
 
 # Firmware
 
@@ -130,7 +112,7 @@ To customize anything — different keys, macros on the arrow positions, whateve
 
 # Testing
 
-Don't put the keycaps on yet. Seriously. Reflowing one cold joint with the keycaps off takes 30 seconds; with caps on it takes ten minutes and a lot of swearing.
+Don't put the keycaps on yet.
 
 **1. Plug it in.** The little power LED on the Pro Micro should come on. If it doesn't, unplug right away and look for solder bridges between adjacent pins on the Pro Micro.
 
