@@ -23,156 +23,130 @@ Onshape Link: https://cad.onshape.com/documents/7541f2100a52e2a8fb9d96d0/w/174a0
 
 # Build Guide
 
-## What you'll need
+Heads up before you start: this whole build took me a weekend, but most of that was waiting for parts. Actual hands-on time is maybe 4–5 hours if you're slow with a soldering iron like me.
 
-**Parts** (see BOM above for the full list)
-- 1× PCB (order from JLCPCB using `KiCad/KiCad_Source_File/Keyboard Gerbers.zip`)
-- 1× Pro Micro (ATmega32U4)
-- 64× Kailh Box Thick Clicky switches
-- 64× 1N4148 through-hole diodes
-- 64× keycaps (ANSI 60% set with the layout this PCB uses)
-- 1× printed/CNC case (`CAD/KEEBASSEMBLY.stl` or `CAD/Keyboard_Assembly.step`)
-- USB-C or Micro-USB cable matching your Pro Micro
-- M2 screws/standoffs sized to your case print
+## Stuff you need
 
-**Tools**
-- Soldering iron (~330 °C for leaded, ~360 °C for lead-free) and solder
-- Flush cutters
-- Tweezers
-- Multimeter (continuity mode)
-- Masking tape
-- Hot glue or kapton tape (for reinforcing the Pro Micro USB port — optional but recommended)
+Parts are all in the BOM up there. Beyond that you'll want:
 
-## Step 1 — Order the PCB
+- soldering iron + solder (any decent iron works, I used a TS100)
+- flush cutters for trimming diode legs
+- tweezers — really helpful for placing diodes, get a pair if you don't have one
+- a multimeter (optional but you'll regret skipping it if something goes wrong)
+- some masking tape
+- a USB cable for the Pro Micro
 
-1. Zip up or grab the prebuilt gerbers at `KiCad/KiCad_Source_File/Keyboard Gerbers.zip`.
-2. Upload to JLCPCB (or any board house). The default settings (1.6 mm FR-4, HASL, any color) work fine.
-3. While you wait, print the case from `CAD/KEEBASSEMBLY.stl`.
+You'll also need a printed case. STL is in `CAD/KEEBASSEMBLY.stl`, or grab the STEP if you want to tweak it. I printed mine in PETG at 0.2 layer height and it was fine.
 
-## Step 2 — Solder the diodes
+## 1. Get the PCB made
 
-The matrix is wired **column-to-row (COL2ROW)** — the diode's cathode (the end with the black band) goes toward the row trace. Every PCB footprint has a square pad and a round pad; the **black band lines up with the square pad** on this board.
+The gerbers are sitting in `KiCad/KiCad_Source_File/Keyboard Gerbers.zip`. Just upload that zip to JLCPCB, leave everything on default (1.6mm, HASL, whatever color you want — black hides flux residue, white shows off the diodes), and order 5. They're cheap and you'll probably want spares.
 
-1. Bend each 1N4148 into a U-shape and drop it into its footprint. Get all 64 placed before you solder anything.
-2. Tape a piece of cardboard or a flat surface over the back, flip the PCB, and let gravity hold the diodes flush.
-3. Solder one leg of each diode, then go back and solder the other leg.
-4. Trim leads flush with flush cutters.
+While that's shipping, kick off the case print so they arrive around the same time.
 
-Sanity check before moving on: pick any diode and put your multimeter in continuity/diode mode. You should read ~0.6 V in one direction and open in the other.
+## 2. Solder the diodes
 
-## Step 3 — Solder the Pro Micro
+Easy step but boring — there are 64 of them. The diodes are directional, so pay attention here: the black band on the diode lines up with the **square pad** on the PCB. Get this wrong and that key won't register, or worse, will ghost when you press other keys.
 
-Do this **before** the switches — once the switches are on, you can't reach the Pro Micro pads.
+What worked for me:
+- bend all 64 diodes into little staples first, in a batch
+- drop them all into the board before soldering anything (saves you from picking up the iron 64 separate times)
+- tape something flat over the back, flip the board, and the diodes will sit flush from gravity
+- solder one leg of each, do a pass for alignment, then solder the other legs
+- snip the leads when you're done
 
-1. Solder header pins or wires into the Pro Micro pads on the PCB. Many builders solder the Pro Micro directly to the board for a lower profile; sockets let you swap it later but add height.
-2. Place the Pro Micro **components facing down** (toward the PCB) so the USB port lines up with the case cutout. Double-check against the case STL before soldering.
-3. Solder all pins. A drop of hot glue between the USB connector and the Pro Micro PCB will save you the day the cable gets yanked.
+If you have a multimeter, hit a couple of random diodes in continuity mode just to make sure you didn't put any in backwards. Way easier to fix now than after the switches are on.
 
-## Step 4 — Mount and solder the switches
+## 3. Solder the Pro Micro
 
-1. Drop the top plate (if your case uses one) over the PCB.
-2. Push 4–5 switches into the **corners and center** of the plate first, making sure the pins go through cleanly without bending. These anchor the plate.
-3. Flip the assembly and solder the corner switches. Inspect that the plate is sitting flush on the PCB before continuing — if it's tilted, reheat and adjust now.
-4. Fill in the rest of the switches and solder both pins of each one.
+Do the Pro Micro **before** the switches. I cannot stress this enough — once switches are on you can't get to those pads without desoldering half the board.
 
-Tip: hold each switch firmly against the plate while you solder its first pin, otherwise it can sag and end up uneven once keycaps are on.
+You can either solder the Pro Micro directly to the PCB (lower profile, permanent) or use machined headers + sockets so you can swap it later. I went direct because I'm cheap. Components face down, toward the PCB, with the USB port lined up with the case cutout.
 
-## Step 5 — Final assembly
+One pro tip: put a dab of hot glue or some kapton over the USB connector after soldering. The Pro Micro USB port is famous for ripping off the board the first time someone trips on the cable.
 
-1. Press keycaps onto the switches.
-2. Drop the PCB+plate stack into the case bottom and screw it down.
-3. Plug in USB. Don't worry that nothing types yet — that's firmware.
+## 4. Switches
+
+Drop the plate (if your case has one — mine doesn't, switches mount straight to the PCB) over the board, push 4 switches into the corners, and one in the middle. These hold everything in place.
+
+Flip it, solder just those 5, then check that the plate is sitting flat. If it's tilted you want to know now, not after you've soldered all 64. Reflow whichever corner is high and push it down.
+
+Once it's flat, fill in the rest. Both pins on each switch.
+
+## 5. Put it together
+
+Keycaps push on, PCB drops into the case, screws in. Plug it in. Don't panic when it doesn't type — we still have to flash firmware.
 
 # Firmware
 
-The keyboard runs **QMK**. Source files live in `Keyboard_firmware/`:
-- `keyboard.json` — board definition (ProMicro, COL2ROW matrix, 64-key ANSI layout)
-- `keymap.c` — three layers: base, MO(1) function, MO(2) reset
+Runs QMK. The `keyboard.json` and `keymap.c` are in `Keyboard_firmware/`. There are three layers:
 
-## Step 1 — Set up QMK
+- base — normal typing
+- fn (hold the key in the bottom right corner where you'd expect right-arrow) — gives you F1–F12, PrtSc, Pause, and the missing arrow nav keys
+- reset (fn + the second mod key) — hitting `R` on this layer puts the board into the bootloader, so you can re-flash without opening the case
 
-```bash
+## Setting up QMK
+
+If you've never used QMK before:
+
+```
 python3 -m pip install --user qmk
 qmk setup
 ```
 
-This clones `qmk_firmware` to `~/qmk_firmware`. Accept the default when it asks.
+Hit yes when it asks to clone `qmk_firmware` to your home directory.
 
-## Step 2 — Drop in the keyboard files
+## Copy the files in
 
-From the root of this repo:
+QMK expects keyboards to live under `qmk_firmware/keyboards/`, so:
 
-```bash
+```
 mkdir -p ~/qmk_firmware/keyboards/keeb/keymaps/default
 cp Keyboard_firmware/keyboard.json ~/qmk_firmware/keyboards/keeb/keyboard.json
 cp Keyboard_firmware/keymap.c       ~/qmk_firmware/keyboards/keeb/keymaps/default/keymap.c
 ```
 
-## Step 3 — Compile
+## Compile
 
-```bash
+```
 qmk compile -kb keeb -km default
 ```
 
-You should get a `keeb_default.hex` in the QMK root. If the compile fails complaining about `LAYOUT_64_ansi`, double-check that `keyboard.json` copied over cleanly.
+Should drop a `.hex` in the QMK root after a few seconds. If it complains about `LAYOUT_64_ansi` not existing, your `keyboard.json` didn't make it over — re-check the copy.
 
-## Step 4 — Flash
+## Flash
 
-1. Plug the keyboard in.
-2. Run:
-   ```bash
-   qmk flash -kb keeb -km default
-   ```
-3. When QMK prints `Detecting USB port, reset your controller now...`, **short the `RST` and `GND` pins on the Pro Micro twice quickly** (or press the reset button if you wired one). The bootloader window is short — about 8 seconds.
-4. QMK will detect the bootloader, flash, and the board will reboot.
+Plug the keyboard in, then:
 
-If you ever flash bad firmware and lose access to the reset key, the layer-2 `QK_BOOT` binding (`MO(1)` + `MO(2)` + `R`) drops the board into the bootloader from any working firmware.
+```
+qmk flash -kb keeb -km default
+```
 
-## Layer reference
+When it says `Detecting USB port, reset your controller now...`, you've got about 8 seconds to short the `RST` pin to `GND` on the Pro Micro twice in quick succession. Tweezers work. The flasher will grab it and write the firmware.
 
-| Layer | How to reach it | What it gives you |
-| --- | --- | --- |
-| 0 (base) | default | ANSI typing layer |
-| 1 (fn) | hold the `MO(1)` key (top-right next to ↑) | F-row, PrtSc/ScrLk/Pause, Home/PgUp/PgDn/End on the arrow cluster |
-| 2 (reset) | hold `MO(1)` + `MO(2)` (right Ctrl on layer 1) | `R` enters QMK bootloader for re-flashing |
+If you ever brick the keymap and lose access to your reset key, the layer-2 bootloader binding saves you — fn + mod + `R`. So even if you mess up the keymap badly, you can always get back into the bootloader without cracking the case open.
 
-To customize, edit `Keyboard_firmware/keymap.c` and re-run steps 2–4.
+To customize anything — different keys, macros on the arrow positions, whatever — edit `keymap.c` and rerun the compile + flash steps.
 
 # Testing
 
-Do this **before** you put keycaps on and screw the case shut — fixing a cold joint is easy now and annoying later.
+Don't put the keycaps on yet. Seriously. Reflowing one cold joint with the keycaps off takes 30 seconds; with caps on it takes ten minutes and a lot of swearing.
 
-## 1 — Smoke test the Pro Micro
+**1. Plug it in.** The little power LED on the Pro Micro should come on. If it doesn't, unplug right away and look for solder bridges between adjacent pins on the Pro Micro.
 
-Plug in USB. The Pro Micro's power LED should light up. If not, unplug immediately and check for solder bridges between adjacent Pro Micro pads.
+**2. Check that the OS sees it.** On Windows it'll show up under Keyboards in Device Manager. On Mac you'll get the keyboard identification wizard popping up — just close it. On Linux, `lsusb` will show a `feed:0000` device. (That's the default VID/PID baked into the firmware, no, it's not malware.)
 
-## 2 — Confirm the OS sees the keyboard
+**3. Hit every key.** https://config.qmk.fm/#/test is what I use. Press each key, check it lights up on screen, move on.
 
-- **Windows:** Device Manager → Keyboards → there should be a new HID Keyboard Device. The QMK USB descriptor in `keyboard.json` uses VID `0xFEED` / PID `0x0000`.
-- **macOS:** the keyboard setup assistant pops up asking you to identify the layout — cancel out, that's enough.
-- **Linux:** `lsusb` should list a `feed:0000` device.
+If something's wrong, it's almost always one of these:
+- one key does nothing → cold joint, reflow both pins
+- one key types something else → either a solder bridge between two switches, or a diode flipped on a different key (matrix scanning makes this confusing)
+- a whole row or column is dead → cold joint at the Pro Micro pin for that row/col, or a totally fried diode somewhere on the row
+- pressing one key triggers two → diode missing or backwards on one of them (the matrix can't isolate without it)
+- nothing at all → firmware didn't flash, or you're holding a perfectly good paperweight
 
-## 3 — Test every key
+**4. Test the fn layer.** Hold the fn key (bottom-right area, next to up-arrow) and tap the number row — should give you F1 through F12.
 
-Open https://config.qmk.fm/#/test or https://keyboard-tester.com/ and press every key on the base layer. Each press should light up exactly one entry on screen.
+**5. Test the bootloader combo.** fn + the second mod + `R`. The keyboard should disappear from your machine and reappear as `Arduino Leonardo` or similar. Unplug and replug and you're back to normal. Once you've confirmed this works, you can flash new firmware forever without touching the reset pins again.
 
-Common failures and what they mean:
-
-| Symptom | Likely cause |
-| --- | --- |
-| One key does nothing | Cold joint on that switch — reflow both pins |
-| One key registers a different letter | Bridged solder between two switch pads, or a diode in backwards on the wrong key |
-| Whole row dead | Cold joint on the row trace at the Pro Micro, or a damaged diode somewhere on that row |
-| Whole column dead | Same, but on the column side |
-| Pressing one key triggers two | Diode missing or installed backwards (no isolation, so the matrix scan ghosts) |
-| Nothing types at all | Firmware didn't flash, or matrix pins in `keyboard.json` don't match the PCB |
-
-## 4 — Test the function layer
-
-Hold the `MO(1)` key (top-right, next to ↑) and confirm the F-row registers as F1–F12.
-
-## 5 — Test bootloader access
-
-Hold `MO(1)` + `MO(2)` + `R`. The keyboard should disappear from the OS and re-enumerate as the Pro Micro bootloader (`Arduino Leonardo` or `ATmega32U4`). Unplug and replug to return to normal — confirming this works means you can always recover from a bad keymap without opening the case.
-
-Once all five tests pass, screw the case together and you're done.
+That's it. Keycaps on, screw the case shut, go play Valorant.
