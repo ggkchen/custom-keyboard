@@ -21,3 +21,5 @@ Onshape Link: https://cad.onshape.com/documents/7541f2100a52e2a8fb9d96d0/w/174a0
 |Arduino Micro Pro	 | 1  | aliexpress | 5.33 | Arduino Microcontroller | https://www.aliexpress.com/ssr/300000512/BundleDeals2?spm=a2g0o.productlist.main.11.2c78f612vaY1aB&productIds=1005006322199481:12000036755772596&pha_manifest=ssr&_immersiveMode=true&disableNav=YES&sourceName=SEARCHProduct&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005006322199481%7C_p_origin_prod%3A&pvid=08416216-fbe8-4685-8c26-a513ac16dcbe	 |
 |Keyboard PCB	 | 5 | JLCPCB | 27.17 | Keyboard PCB | 
 
+# POSTER!
+<img width="843" height="1197" alt="image" src="https://github.com/user-attachments/assets/efc8d419-1bc0-4f65-8467-c9ef2ff6a76c" />
