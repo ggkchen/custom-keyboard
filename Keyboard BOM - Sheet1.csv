@@ -1,0 +1,5 @@
+Name,Qty,Manufacturer,Cost,Description,URL,Total Cost
+Navy-CPG1511F01S09,110,Kailh,36,Keyboard Switches,https://www.kailh.net/products/kailh-box-thick-clicky-switch-set?variant=43650830369010,71.23
+1N4148FS-ND,70,Digikey,2.73,Diodes for switches,https://www.digikey.com/en/products/detail/onsemi/1N4148/458603,
+Arduino Micro Pro,1,AliExpress,5.33,Arduino Micro Pro,https://www.aliexpress.com/ssr/300000512/BundleDeals2?spm=a2g0o.productlist.main.11.2c78f612vaY1aB&productIds=1005006322199481:12000036755772596&pha_manifest=ssr&_immersiveMode=true&disableNav=YES&sourceName=SEARCHProduct&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005006322199481%7C_p_origin_prod%3A&pvid=08416216-fbe8-4685-8c26-a513ac16dcbe,
+Keyboard PCB,5,JLCPCB,27.17,KeyBoard PCB,,
