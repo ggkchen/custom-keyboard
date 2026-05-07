@@ -1,7 +1,7 @@
 {
     "manufacturer": "dav",
     "keyboard_name": "keeb",
-    "maintainer": "PpMaster37",
+    "maintainer": "ggkchen",
     "development_board": "promicro",
     "diode_direction": "COL2ROW",
     "features": {
