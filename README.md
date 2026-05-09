@@ -46,7 +46,7 @@ You'll also need a printed case. STL is in `CAD/KEEBASSEMBLY.stl`, or grab the S
 
 ## 1. Get the PCB made
 
-The gerbers are sitting in `KiCad/KiCad_Source_File/Keyboard Gerbers.zip`. Just upload that zip to JLCPCB, and order 5.
+The gerbers are sitting in `PCB/kicad/gerbers/Keyboard Gerbers.zip`. Just upload that zip to JLCPCB, and order 5.
 
 ## 2. Solder the diodes
 
