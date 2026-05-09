@@ -13,13 +13,21 @@ Onshape Link: https://cad.onshape.com/documents/7541f2100a52e2a8fb9d96d0/w/174a0
 
 # BOM
 
+| Item       | Part                       | Qty | Source             | Unit (USD) | Total (USD) | Description                                     |
+| ---------- | -------------------------- | --- | ------------------ | ---------- | ----------- | ----------------------------------------------- |
+| Switches   | [Navy-CPG1511F01S09][sw]   | 110 | Kailh              | 0.65       | 71.23       | Kailh Box Thick Clicky switches                 |
+| Diodes     | [1N4148FS-ND][di]          | 70  | Digikey (onsemi)   | 0.04       | 2.73        | 1N4148 switching diodes for the matrix          |
+| Controller | [Arduino Pro Micro][mc]    | 1   | AliExpress         | 5.33       | 5.33        | ATmega32U4 Pro Micro board                      |
+| PCB        | HackPad PCB                | 5   | JLCPCB             | 5.43       | 27.17       | Custom PCB (JLCPCB minimum order qty 5)         |
+| Keycaps    | [Blank PBT ANSI Set][kc]   | 1   | AliExpress         | 15.00      | 15.00       | 64-key blank PBT ANSI set, 6.25u spacebar       |
+|            |                            |     | **Grand Total**    |            | **121.46**  |                                                 |
 
-|Name| Qty | Manufacturer | Cost | Description| URL| Total Cost
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Navy-CPG1511F01S09  | 110 | Kailh | 36 | Keyboard Switches | https://www.kailh.net/products/kailh-box-thick-clicky-switch-set?variant=43650830369010 | 71.23
-|1N4148FS-ND	 | 70  | Digikey | 2.73 | Diodes for switches | https://www.digikey.com/en/products/detail/onsemi/1N4148/458603	 |
-|Arduino Micro Pro	 | 1  | aliexpress | 5.33 | Arduino Microcontroller | https://www.aliexpress.com/ssr/300000512/BundleDeals2?spm=a2g0o.productlist.main.11.2c78f612vaY1aB&productIds=1005006322199481:12000036755772596&pha_manifest=ssr&_immersiveMode=true&disableNav=YES&sourceName=SEARCHProduct&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005006322199481%7C_p_origin_prod%3A&pvid=08416216-fbe8-4685-8c26-a513ac16dcbe	 |
-|Keyboard PCB	 | 5 | JLCPCB | 27.17 | Keyboard PCB |
+[sw]: https://www.kailh.net/products/kailh-box-thick-clicky-switch-set?variant=43650830369010
+[di]: https://www.digikey.com/en/products/detail/onsemi/1N4148/458603
+[mc]: https://www.aliexpress.com/ssr/300000512/BundleDeals2
+[kc]: https://www.aliexpress.com/wholesale?SearchText=blank+pbt+keycaps+ansi+60+percent
+
+Keycap set must include: 6.25u spacebar, 2u Backspace, 2u L-Shift, 2.25u Enter, 1.75u Caps, 1.5u Tab + Backslash, 1.25u modifiers. Any standard 60%/64-key ANSI kit works.
 
 # Build Guide
 
